@@ -137,8 +137,8 @@ void CSprite::Birth()
 {
     if(!m_Birthed)
     {
-        for(std::list<SpriteComponent>::iterator iter = m_BirthComponents.begin(); iter != m_BirthComponents.end(); ++iter)
-            (*iter).func(this, &(*iter));
+        for(auto& component : m_BirthComponents)
+            component.func(this, &component);
     }
     m_Birthed = true;
 }
@@ -153,10 +153,10 @@ void CSprite::Process()
 
     m_FrameCounter++;
 
-    for(std::list<SpriteComponent>::iterator iter = m_BehavComponents.begin(); iter != m_BehavComponents.end(); ++iter)
+    for(auto& component : m_BehavComponents)
     {
-        (*iter).func(this, &(*iter));
-        (*iter).Tick();
+        component.func(this, &component);
+        component.Tick();
     }
 
     // Die?
