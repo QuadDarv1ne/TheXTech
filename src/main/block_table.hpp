@@ -401,7 +401,7 @@ protected:
         int trow = s_floor_div_32(rect.t);
         int brow = s_floor_div_32(rect.b + 31);
 
-        if(columns.size() == 0)
+        if(columns.empty())
         {
             columns.emplace_back(screen_ptr_arr_t());
             col_first_row_index.resize(1);
@@ -443,7 +443,7 @@ protected:
             if(col == rcol - 1)
                 inner_rect.r = rect.r - (rcol - 1) * 32;
 
-            if(columns[internal_col].size() == 0)
+            if(columns[internal_col].empty())
             {
                 columns[internal_col].push_back(new screen_t);
                 col_first_row_index[internal_col] = trow;
@@ -550,7 +550,7 @@ protected:
 public:
     void query(std::vector<BaseRef_t>& out, const rect_external& rect)
     {
-        if(columns.size() == 0 || member_rects.size() == 0)
+        if(columns.empty() || member_rects.empty())
             return;
 
         int lcol = s_floor_div_32(rect.l); // each column contains 32 cells
@@ -579,7 +579,7 @@ public:
         {
             int internal_col = col - first_col_index;
 
-            if(columns[internal_col].size() == 0)
+            if(columns[internal_col].empty())
             {
                 inner_rect.l = 0;
                 inner_rect.cont_axes = CONT_X;

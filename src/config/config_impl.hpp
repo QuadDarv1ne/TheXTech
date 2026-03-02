@@ -743,7 +743,7 @@ bool ConfigFullscreenRes_t<true>::rotate_left()
 
     value_t old_value = m_value;
 
-    if(res.size() == 0)
+    if(res.empty())
         return false;
 
     size_t new_idx = find_cur_index() - 1;
@@ -770,7 +770,7 @@ bool ConfigFullscreenRes_t<true>::rotate_right()
 
     value_t old_value = m_value;
 
-    if(res.size() == 0)
+    if(res.empty())
         return false;
 
     size_t new_idx = find_cur_index() + 1;

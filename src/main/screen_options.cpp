@@ -385,7 +385,7 @@ void Do()
 
         RefreshVisibleItems();
 
-        if(visible_items.size() == 0)
+        if(visible_items.empty())
         {
             PlaySoundMenu(SFX_BlockHit);
             section_index = SECTION_NONE;
