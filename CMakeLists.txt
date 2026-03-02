@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5...3.10)
+cmake_minimum_required(VERSION 3.16)
 
 if(POLICY CMP0069) # Allow CMAKE_INTERPROCEDURAL_OPTIMIZATION (lto) to be set
     cmake_policy(SET CMP0069 NEW)
@@ -8,6 +8,11 @@ endif()
 if(POLICY CMP0079) # Allow linking subprojects against each other
     cmake_policy(SET CMP0079 NEW)
     set(CMAKE_POLICY_DEFAULT_CMP0079 NEW)
+endif()
+
+if(POLICY CMP0091) # MSVC runtime library selection
+    cmake_policy(SET CMP0091 NEW)
+    set(CMAKE_POLICY_DEFAULT_CMP0091 NEW)
 endif()
 
 project(TheXTech LANGUAGES C CXX)
