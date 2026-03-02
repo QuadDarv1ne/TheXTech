@@ -84,6 +84,43 @@ macro(pge_add_opt_flag OPTFLAG OPT_VAR)
     endif()
 endmacro()
 
+# ============================ Warning Flags ===================================
+
+# Add common warning flags for better code quality
+if(NOT MSVC)
+    xtech_add_warning_flag("-Wall" WALL)
+    xtech_add_warning_flag("-Wextra" WEXTRA)
+    xtech_add_warning_flag("-Wpedantic" WPEDANTIC)
+    xtech_add_warning_flag("-Wshadow" WSHADOW)
+    xtech_add_warning_flag("-Wnull-dereference" WNULL_DEREF)
+    xtech_add_warning_flag("-Wdouble-promotion" WDOUBLE_PROMOTION)
+    
+    # C++ specific warnings
+    xtech_add_warning_flag("-Wnon-virtual-dtor" WNON_VIRTUAL_DTOR)
+    xtech_add_warning_flag("-Woverloaded-virtual" WOVERLOADED_VIRTUAL)
+    xtech_add_warning_flag("-Wold-style-cast" WOLD_STYLE_CAST)
+    xtech_add_warning_flag("-Wuseless-cast" WUSELESS_CAST)
+    
+    # Disable some annoying warnings
+    xtech_disable_warning_flag("unused-parameter" UNUSED_PARAMETER)
+    xtech_disable_warning_flag("missing-field-initializers" MISSING_FIELD_INITIALIZERS)
+endif()
+
+# MSVC warning flags
+if(MSVC)
+    # Enable more warnings
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
+    
+    # Disable specific warnings
+    # C4100: unreferenced formal parameter
+    # C4127: conditional expression is constant
+    # C4244: conversion, possible loss of data
+    # C4267: conversion from 'size_t' to 'type', possible loss of data
+    # C4456: declaration hides previous local declaration
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4100 /wd4127 /wd4244 /wd4267 /wd4456")
+endif()
+
 function(pge_cxx_standard STDVER)
     if(NOT WIN32)
         set(CMAKE_CXX_STANDARD ${STDVER} PARENT_SCOPE)
