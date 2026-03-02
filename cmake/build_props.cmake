@@ -91,19 +91,16 @@ if(NOT MSVC)
     xtech_add_warning_flag("-Wall" WALL)
     xtech_add_warning_flag("-Wextra" WEXTRA)
     xtech_add_warning_flag("-Wpedantic" WPEDANTIC)
-    xtech_add_warning_flag("-Wshadow" WSHADOW)
     xtech_add_warning_flag("-Wnull-dereference" WNULL_DEREF)
     xtech_add_warning_flag("-Wdouble-promotion" WDOUBLE_PROMOTION)
-    
-    # C++ specific warnings
-    xtech_add_warning_flag("-Wnon-virtual-dtor" WNON_VIRTUAL_DTOR)
-    xtech_add_warning_flag("-Woverloaded-virtual" WOVERLOADED_VIRTUAL)
-    xtech_add_warning_flag("-Wold-style-cast" WOLD_STYLE_CAST)
-    xtech_add_warning_flag("-Wuseless-cast" WUSELESS_CAST)
     
     # Disable some annoying warnings
     xtech_disable_warning_flag("unused-parameter" UNUSED_PARAMETER)
     xtech_disable_warning_flag("missing-field-initializers" MISSING_FIELD_INITIALIZERS)
+    xtech_disable_warning_flag("shadow" SHADOW)
+    xtech_disable_warning_flag("non-virtual-dtor" NON_VIRTUAL_DTOR)
+    xtech_disable_warning_flag("old-style-cast" OLD_STYLE_CAST)
+    xtech_disable_warning_flag("useless-cast" USELESS_CAST)
 endif()
 
 # MSVC warning flags
