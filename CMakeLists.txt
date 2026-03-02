@@ -124,6 +124,19 @@ if(CMAKE_BUILD_TYPE_LOWER STREQUAL "debug")
     endif()
 endif()
 
+# Enable Link-Time Optimization for Release builds
+option(ENABLE_LTO "Enable Link-Time Optimization for Release/MinSizeRel builds" OFF)
+if(ENABLE_LTO AND (CMAKE_BUILD_TYPE_LOWER STREQUAL "release" OR CMAKE_BUILD_TYPE_LOWER STREQUAL "minsizerel"))
+    include(CheckIPOSupported)
+    check_ipo_supported(RESULT LTO_SUPPORTED OUTPUT LTO_OUTPUT)
+    if(LTO_SUPPORTED)
+        set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+        message(STATUS "LTO enabled for ${CMAKE_BUILD_TYPE} build")
+    else()
+        message(WARNING "LTO is not supported: ${LTO_OUTPUT}")
+    endif()
+endif()
+
 # Version
 include(version.cmake)
 # Default GIT version
