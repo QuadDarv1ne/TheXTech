@@ -77,10 +77,8 @@ LoadedGLProgramRef_t ResolveGLProgram(const std::string& name)
     if(it != s_ProgramCache.end())
         return it->second;
 
-    LoadedGLProgram.emplace_back();
+    LoadedGLProgram.emplace_back(std::make_unique<StdPicture>());
     std::unique_ptr<StdPicture>& dst = LoadedGLProgram.back();
-
-    dst.reset(new StdPicture());
 
     XRender::LoadPictureShader(*dst, resolved);
 
@@ -129,10 +127,8 @@ LoadedGLProgramRef_t ResolveGLParticleSystem(const std::string& name)
     if(it != s_ProgramCache.end())
         return it->second;
 
-    LoadedGLProgram.emplace_back();
+    LoadedGLProgram.emplace_back(std::make_unique<StdPicture>());
     std::unique_ptr<StdPicture>& dst = LoadedGLProgram.back();
-
-    dst.reset(new StdPicture());
 
     std::string frag_resolved = source_dir->resolveFileCaseExistsAbs(name + ".frag");
     std::string image_resolved = source_dir->resolveFileCaseExistsAbs(name + ".png");
