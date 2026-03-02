@@ -443,7 +443,7 @@ void LegacyMenu_Start()
     }
 
     // create an empty input slot
-    if(Controls::g_InputMethods.size() == 0)
+    if(Controls::g_InputMethods.empty())
         Controls::g_InputMethods.push_back(nullptr);
 
     s_players[0].m_state = PlayerState::SelectChar;
@@ -2417,7 +2417,7 @@ int Logic()
     /*-----------------------*\
     ||    Shared back key    ||
     \*-----------------------*/
-    if(CheckDone() || (s_context == Context::MainMenu && Controls::g_InputMethods.size() == 0))
+    if(CheckDone() || (s_context == Context::MainMenu && Controls::g_InputMethods.empty()))
     {
         if(!l_SharedControls.MenuBack)
             MenuCursorCanMove = true;

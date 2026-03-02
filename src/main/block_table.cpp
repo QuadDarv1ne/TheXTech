@@ -399,7 +399,7 @@ void treeTempBlockQuery(std::vector<BaseRef_t>& out,
     s_NPCsToTempBlocks(out);
 
     // this table is empty unless an NPC crossed a boundary during this frame
-    if(s_temp_block_table.member_rects.size() != 0)
+    if(!s_temp_block_table.member_rects.empty())
         s_temp_block_table.query(out, loc);
 
 
