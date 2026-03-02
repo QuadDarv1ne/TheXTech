@@ -2268,7 +2268,7 @@ void CheckActive()
         if(MusicPaused)
         {
             SoundResumeAll();
-            if(GameOutro == true)
+            if(GameOutro)
                 SoundResumeAll();
             else if(LevelSelect == true && GameMenu == false && LevelEditor == false)
                 SoundResumeAll();
