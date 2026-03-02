@@ -92,7 +92,7 @@ void CSpriteManager::InstantiateSprite(CSpriteRequest *req, bool center_coords)
     CSprite *spr = nullptr;
 
     // For built in sprites
-    if(req != nullptr && req->type != (BUILTIN_SPRITE_TYPE)BST_Custom)
+    if(req && req->type != (BUILTIN_SPRITE_TYPE)BST_Custom)
     {
         switch(req->type)
         {
@@ -250,7 +250,7 @@ void CSpriteManager::InstantiateSprite(CSpriteRequest *req, bool center_coords)
             AddSprite(spr);
     }
     // Else, instantiate custom sprite?
-    else if(req != nullptr && req->type == BST_Custom)
+    else if(req && req->type == BST_Custom)
     {
         CSprite *from_bp = CopyFromBlueprint(const_cast<char *>(req->str.c_str()));
 

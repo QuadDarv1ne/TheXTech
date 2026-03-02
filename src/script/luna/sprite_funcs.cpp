@@ -687,7 +687,7 @@ void SpriteFunc::SpriteDebug(CSprite *me, SpriteComponent *obj)
 //               by registering a new bitmap render operation
 void SpriteFunc::StaticDraw(CSprite *me)
 {
-    if(me != nullptr && me->m_Visible)
+    if(me && me->m_Visible)
     {
         if(!me->m_directImg && me->m_GfxRects.empty()) // Workaround
         {
@@ -721,7 +721,7 @@ void SpriteFunc::StaticDraw(CSprite *me)
 //                 to camera position by registering new bitmap render operation
 void SpriteFunc::RelativeDraw(CSprite *me)
 {
-    if(me != nullptr && me->m_Visible)
+    if(me && me->m_Visible)
     {
         if(!me->m_directImg && me->m_GfxRects.empty()) // Workaround
         {
